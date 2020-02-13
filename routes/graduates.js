@@ -4,6 +4,11 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const path = require('path'); 
 
+// router.get('/', (req, res) => {
+//     var cursor = db.collection('graduates').find(); 
+//     console.log(cursor);
+// })
+
 router.get('/', async (req, res) => {
     const graduates = await Graduate.find().sort('name');
     res.send(graduates);
