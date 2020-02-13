@@ -4,10 +4,6 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const path = require('path'); 
 
-// router.get('/', (req, res) => {
-//     res.sendFile(path.join(__dirname + '/index.html')); 
-// }); 
-
 router.get('/', async (req, res) => {
     const graduates = await Graduate.find().sort('name');
     res.send(graduates);
