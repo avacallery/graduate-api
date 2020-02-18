@@ -11,6 +11,9 @@
 
     <form action="api/graduates" method="POST">
     <input type="text" placeholder="Name" name="name">
+    <input type="text" placeholder="Email" name="email">
+    <input type="text" placeholder="Date Of Graduation" name="dateOfGraduation">
+    <input type="text" placeholder="Bio" name="bio">
     <button id="submit" type="submit">Submit</button>
     </form>
 
@@ -53,25 +56,25 @@
         }
 
 
-        var postNewStudent = function() {
+//        function postNewStudent() {
 
-        fetch('http://localhost:5000/api/graduates', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        name: 'Ody the New Student',
-        email: 'odywhycallery@gmail.com',
-        dateOfGraduation: "04/20/2020",
-        bio: "Cat school was not for me."
-    })
-})
+//         fetch('http://localhost:5000/api/graduates', {
+//     method: 'POST',
+//     headers: {
+//         'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({
+//         name: 'Ody the New Student',
+//         email: 'odywhycallery@gmail.com',
+//         dateOfGraduation: "04/20/2020",
+//         bio: "Cat school was not for me."
+//     })
+// })
 
-    .then(res => res.json())
-    .then(json => console.log(json))
-    .catch(error => console.error('ERROR!', error));
-        }
+//     .then(res => res.json())
+//     .then(json => console.log(json))
+//     .catch(error => console.error('ERROR!', error));
+//         }
 
     </script>
 </body>
