@@ -9,11 +9,50 @@
 <body>
     <h1>This is a webpage.</h1>
 
-    <form action="../api/graduates" method="POST">
+    <form action="api/graduates" method="POST">
     <input type="text" placeholder="First Name" name="firstname">
     <input type="text" placeholder="Last Name" name="lastname">
     <button type="submit">Submit</button>
     </form>
 
+    <button id="button">Click for Graduate Stories</button>
+    <div id="data">
+
+<script>
+        document.getElementById("button").addEventListener("click", getData);
+
+        function getData() {
+
+            var xhr = new XMLHttpRequest();
+            console.log(xhr);
+
+            xhr.open('GET', 'http://localhost:5000/api/graduates', true);
+            xhr.onload = function () {
+            
+                if (xhr.status == 200) {
+
+                    var parsedData = JSON.parse(xhr.responseText);
+
+                    console.log(parsedData); 
+                    var dataList = ""; 
+
+                    for (var i = 0; i < parsedData.length; i++) {
+                        dataList += "<p> Name: " + parsedData[i].name + "<br>" +
+                        "Email: " + parsedData[i].email + "<br>" +
+                        "Date of Graduation:" + parsedData[i].dateOfGraduation + "<br>" +
+                        "Bio: " + parsedData[i].bio + "</p>"
+                        console.log(dataList);
+                    }
+
+                    document.getElementById("data").innerHTML = dataList; 
+                } else {
+                    console.log("That is an error.");
+                }
+            }
+            xhr.send();
+        }
+
+    </script>
 </body>
+
 </html>
