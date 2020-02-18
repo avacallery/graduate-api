@@ -10,9 +10,8 @@
     <h1>This is a webpage.</h1>
 
     <form action="api/graduates" method="POST">
-    <input type="text" placeholder="First Name" name="firstname">
-    <input type="text" placeholder="Last Name" name="lastname">
-    <button type="submit">Submit</button>
+    <input type="text" placeholder="Name" name="name">
+    <button id="submit" type="submit">Submit</button>
     </form>
 
     <button id="button">Click for Graduate Stories</button>
@@ -20,6 +19,7 @@
 
 <script>
         document.getElementById("button").addEventListener("click", getData);
+        document.getElementById("submit").addEventListener("click", postNewStudent);
 
         function getData() {
 
@@ -50,6 +50,27 @@
                 }
             }
             xhr.send();
+        }
+
+
+        var postNewStudent = function() {
+
+        fetch('http://localhost:5000/api/graduates', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        name: 'Ody the New Student',
+        email: 'odywhycallery@gmail.com',
+        dateOfGraduation: "04/20/2020",
+        bio: "Cat school was not for me."
+    })
+})
+
+    .then(res => res.json())
+    .then(json => console.log(json))
+    .catch(error => console.error('ERROR!', error));
         }
 
     </script>
