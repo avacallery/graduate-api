@@ -4,20 +4,20 @@ const bodyParser = require('body-parser')
 const app = express();
 const router = express.Router();
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html')
-})
+// app.get('/', (req, res) => {
+//     res.sendFile(__dirname + '/index.html')
+// })
 
-fetch('https://localhost:5000/api/graduates', {
+fetch('http://localhost:5000/api/graduates', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-        name: 'New Student',
-        email: 'new@gmail.com',
+        name: 'NEW STUDENT',
+        email: 'AVANEWNEWNEW@gmail.com',
         dateOfGraduation: "04/20/2020",
-        bio: "I am willing to do whatever it takes to be the next Pokemon Master."
+        bio: "Blah blah blah."
     })
 })
     // })  .then(res => {

@@ -7,6 +7,7 @@ const graduates = require('./routes/graduates');
 require('dotenv/config');
 const app = express();
 const fetch = require('node-fetch');
+const frontend = require('./public/app'); 
 
 mongoose.connect(
     process.env.DB_CONNECTION,
@@ -17,7 +18,7 @@ mongoose.connect(
 app.use(cors());
 app.use(express.json());
 app.use('/api/graduates', graduates);
-// app.use('/', frontend); 
+app.use('/', frontend); 
 app.use(express.static('public')); 
 app.use(bodyParser.urlencoded({extended: true})); 
 
