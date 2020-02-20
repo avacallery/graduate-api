@@ -7,8 +7,13 @@
     <title>Test Page</title>
 </head>
 <body>
+    <header>
+    <div id="page-banner">
     <h1>CareerDevs Beta</h1>
+    </div>
+    </header>
 
+    <div id="graduateStories">
     <form action="api/graduates" method="POST">
     <input type="text" placeholder="Name" name="name">
     <input type="text" placeholder="Email" name="email">
@@ -16,19 +21,26 @@
     <input type="text" placeholder="Bio" name="bio">
     <button id="submit" type="submit">Submit</button>
     </form>
+    </div>
 
+    <br>
+    <br>
     <button id="button">Click for Graduate Stories</button>
     <div id="data">
 
-<script>
-        document.getElementById("button").addEventListener("click", getData);
+    </div>
 
-        function getData() {
+<script>
+        document.getElementById("button").addEventListener("click", getStudentData);
+        // document.getElementById("deleteButton").addEventListener("click", removeOneStudent);
+
+
+        function getStudentData() {
 
             var xhr = new XMLHttpRequest();
             console.log(xhr);
 
-            xhr.open('GET', 'http://localhost:5000/api/graduates', true);
+            xhr.open('GET', 'http://localhost:5000/api/graduates/', true);
             xhr.onload = function () {
             
                 if (xhr.status == 200) {
@@ -43,10 +55,32 @@
                         "Email: " + parsedData[i].email + "<br>" +
                         "Date of Graduation:" + parsedData[i].dateOfGraduation + "<br>" +
                         "Bio: " + parsedData[i].bio + "</p>"
-                        console.log(dataList);
+                        + "<button id='deleteButton' onclick='removeOneStudent'>Delete Student</button>";
                     }
 
-                    document.getElementById("data").innerHTML = dataList; 
+                    document.getElementById("data").innerHTML = dataList 
+                } else {
+                    console.log("That is an error.");
+                }
+            }
+            xhr.send();
+        }
+
+        function removeOneStudent() {
+
+            var xhr = new XMLHttpRequest();
+            console.log(xhr);
+
+            var parsedData = JSON.parse(xhr.responseText);
+            for (var i = 0; i < parsedData.length; i++) {
+                    }
+                    const id = parsedData[i].id;   
+                     xhr.open('DELETE', `http://localhost:5000/api/graduates/${id}`, true);
+                     xhr.onload = function () {
+            
+                if (xhr.status == 200) {
+
+                    console.log("Success.")
                 } else {
                     console.log("That is an error.");
                 }
